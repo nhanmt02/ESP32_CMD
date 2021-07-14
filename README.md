@@ -1,35 +1,41 @@
-1. Restart ESP8266 
+# 1. Restart ESP8266 
+```
 AT+RST$0D$0A
->>>>>>>>> If connected wifi
+```
+If connected wifi
+```
 AT+RST{0D}{0A}{0D}{0A}OK{0D}{0A}{0D}{0A}ready{0D}{0A}WIFI CONNECTED{0D}{0A}WIFI GOT IP{0D}{0A}
->>>>>>>>> If not connected wifi
+```
+If not connected wifi
+```
 AT+RST{0D}{0A}AT+RST{0D}{0A}{0D}{0A}OK{0D}{0A}{0D}{0A}ready{0D}{0A}
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-2.View AP connected
+```
+# 2. View AP connected
+```
 AT+CWJAP?$0D$0A
->>>>>>>>>
 AT+CWJAP?
 +CWJAP:"SHCVN02","48:f8:b3:2e:f1:76",11,-59
-
-3.Set Station mode:
+```
+# 3. Set Station mode:
+```
 AT+CWMODE=1$0D$0A
->>>>>>>>>
 AT+CWMODE=1
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-4.Question mode setting:
+```
+
+# 4. Question mode setting:
+```
 AT+CWMODE?$0D$0A
->>>>>>>>>
 AT+CWMODE?
 +CWMODE:1
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-5.Truy van cac mang wifi co the ket noi
+```
+# 5. Truy van cac mang wifi co the ket noi
+```
 AT+CWLAP$0D$0A
->>>>>>>>>
+
 AT+CWLAP
 +CWLAP:(4,"Gontek2.4G",-57,"10:62:eb:3c:f1:72",1)
 +CWLAP:(3,"SHCVN02",-61,"48:f8:b3:2e:f1:76",1)
@@ -45,47 +51,51 @@ AT+CWLAP
 +CWLAP:(4,"Ho Chi Minh",-86,"bc:67:1c:40:43:9a",6)
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-6.Ket noi vao mang wifi
+```
+# 6. Ket noi vao mang wifi
+```
 AT+CWJAP="SHCVN02","khongduoc"$0D$0A
->>>>>>>>>
 AT+CWJAP="SHCVN02","khongduoc"
 WIFI CONNECTED
 WIFI GOT IP
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-7.Xem dia chi module
+```
+
+# 7. Xem dia chi module
+```
 AT+CIFSR$0D$0A
->>>>>>>>>
+
 AT+CIFSR
 +CIFSR:STAIP,"192.168.0.123"
 +CIFSR:STAMAC,"a4:cf:12:24:3b:18"
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-8.Set time
+```
+# 8. Set time
+```
 AT+CIPSNTPCFG=1,1,"sg.pool.ntp.org"$0D$0A
->>>>>>>>>
+
 AT+CIPSNTPCFG=1,1,"sg.pool.ntp.org"
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-9. Question time
+```
+# 9. Question time
+```
 AT+CIPSNTPTIME?$0D$0A
->>>>>>>>>
+
 AT+CIPSNTPTIME?
 +CIPSNTPTIME:Thu Aug 22 03:08:04 2019
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 AT+CIPSSLCCONF=3,0,0$0D$0A
 AT+CIPSSLCCONF=3,0,0
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 AT+CIPSTART="SSL","a2oss9xummq06l-ats.iot.ap-southeast-1.amazonaws.com",8443$0D$0A
->>>>>>>>>
+
 AT+CIPSTART="SSL","a2oss9xummq06l-ats.iot.ap-southeast-1.amazonaws.com",8443
 CONNECT
 
@@ -95,19 +105,19 @@ AT+CIPSTART="TCP","52.219.40.235",80$0D$0A
 AT+CIPSEND=86$0D$0A
 GET /helloWorld.txt HTTP/1.1$0D$0A
 Host: imic-backet-s3.s3-ap-southeast-1.amazonaws.com$0D$0A$0D$0A
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 202 is length of POST
 AT+CIPSEND=202$0D$0A
->>>>>>>>>
+
 AT+CIPSEND=202
 
 OK
 
 >
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 *Run commmand POST after character '>', 52 length of json
 POST /things/blinky/shadow HTTP/1.1$0D$0AHost: a2oss9xummq06l-ats.iot.ap-southeast-1.amazonaws.com$0D$0AContent-Type: application/json$0D$0AContent-Length: 52$0D$0A$0D$0A{"state":{"desired":{"prop1":"13"},"reported":{}}}$0D$0A
->>>>>>>>>
+
+
 Recv 202 bytes
 
 SEND OK
@@ -121,14 +131,12 @@ connection: keep-alive
 
 
 +IPD,157:{"state":{"desired":{"prop1":"12"},"reported":{}},"metadata":{"desired":{"prop1":{"timestamp":1566483958}},"reported":{}},"version":5,"timestamp":1566483958}
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 AT+CIPSTART="SSL","a2oss9xummq06l-ats.iot.ap-southeast-1.amazonaws.com",8443$0D$0A
->>>>>>>>>
 AT+CIPSTART="SSL","a2oss9xummq06l-ats.iot.ap-southeast-1.amazonaws.com",8443
 CONNECT
 
 OK
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Note: on visual code start count is 1. Therefor -1.$0D$0A is 2 character
 AT+CIPSEND=97$0D$0A
 >>>>>>>>>
@@ -137,7 +145,6 @@ AT+CIPSEND=97
 OK
 
 >
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 *Run commmand POST after character '>':
 GET /things/blinky/shadow HTTP/1.1$0D$0AHost: a2oss9xummq06l-ats.iot.ap-southeast-1.amazonaws.com$0D$0A$0D$0A
 
@@ -187,7 +194,6 @@ x-amzn-ErrorType: ResourceNotFoundException:
 
 +IPD,72:{"message":"Not Found","traceId":"47e0eda8-5cad-1dd8-0a56-28ab96535910"}CLOSED
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 AT+UART_DEF=9600,8,1,0,0$0D$0A
 >>>AT+UART_DEF=9600,8,1,0,0
 
@@ -201,3 +207,4 @@ AT+CIPSSLCCONF=3,0,0$0D$0A
 AT+CWMODE=1$0D$0A
 4.Config time server
 AT+CIPSNTPCFG=1,1,"sg.pool.ntp.org"$0D$0A
+```
